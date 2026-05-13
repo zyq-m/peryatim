@@ -1,0 +1,46 @@
+{
+  "users": [
+    { "id": 1, "name": "Admin User", "email": "admin@peryatim.com", "role": "admin", "password": "admin123" },
+    { "id": 2, "name": "Staff User", "email": "staff@peryatim.com", "role": "staff", "password": "staff123" },
+    { "id": 3, "name": "Guardian User", "email": "guardian@peryatim.com", "role": "guardian", "password": "guard123" },
+    { "id": 4, "name": "Donor User", "email": "donor@peryatim.com", "role": "donor", "password": "donor123" }
+  ],
+  "guardians": [
+    { "id": 1, "name": "Ahmad Bin Ismail", "contact": "012-3456789" },
+    { "id": 2, "name": "Siti Binti Abdullah", "contact": "011-2345678" },
+    { "id": 3, "name": "Rohana Binti Kamal", "contact": "019-8765432" }
+  ],
+  "orphans": [
+    { "id": 1, "name": "Ali Bin Ahmad", "dob": "2018-05-12", "gender": "Male", "background": "Both parents passed away in accident", "admission_date": "2024-01-15", "guardian_id": 1 },
+    { "id": 2, "name": "Siti Binti Ahmad", "dob": "2020-08-23", "gender": "Female", "background": "Father deceased, mother unable to care", "admission_date": "2024-03-10", "guardian_id": 1 },
+    { "id": 3, "name": "Mohd Fairuz Bin Rosli", "dob": "2016-11-03", "gender": "Male", "background": "Orphaned due to illness", "admission_date": "2023-06-20", "guardian_id": 2 },
+    { "id": 4, "name": "Nur Aisyah Binti Hasan", "dob": "2019-02-17", "gender": "Female", "background": "Abandoned at birth", "admission_date": "2024-09-01", "guardian_id": 2 },
+    { "id": 5, "name": "Amir Bin Zulkifli", "dob": "2017-07-30", "gender": "Male", "background": "Parents missing, relative unable to support", "admission_date": "2023-12-05", "guardian_id": 3 }
+  ],
+  "adoptions": [
+    { "id": 1, "orphan_id": 3, "user_id": 4, "status": "approved" },
+    { "id": 2, "orphan_id": 5, "user_id": 4, "status": "pending" },
+    { "id": 3, "orphan_id": 1, "user_id": 3, "status": "pending" }
+  ],
+  "donations": [
+    { "id": 1, "donor_id": 4, "amount": 500, "date": "2026-01-10" },
+    { "id": 2, "donor_id": 4, "amount": 250, "date": "2026-02-14" },
+    { "id": 3, "donor_id": 4, "amount": 1000, "date": "2026-03-20" },
+    { "id": 4, "donor_id": 4, "amount": 150, "date": "2026-04-05" }
+  ],
+  "expenses": [
+    { "id": 1, "category": "Utilities", "amount": 1200, "date": "2026-01-05" },
+    { "id": 2, "category": "Food", "amount": 3500, "date": "2026-01-10" },
+    { "id": 3, "category": "Education", "amount": 2000, "date": "2026-02-01" },
+    { "id": 4, "category": "Healthcare", "amount": 800, "date": "2026-02-15" },
+    { "id": 5, "category": "Utilities", "amount": 1150, "date": "2026-02-05" },
+    { "id": 6, "category": "Food", "amount": 3200, "date": "2026-02-10" },
+    { "id": 7, "category": "Education", "amount": 2000, "date": "2026-03-01" },
+    { "id": 8, "category": "Maintenance", "amount": 2500, "date": "2026-03-15" }
+  ],
+  "applications": [
+    { "id": 1, "guardian_id": 3, "orphan_name": "Siti Aminah", "status": "pending", "submitted_at": "2026-04-20" },
+    { "id": 2, "guardian_id": 3, "orphan_name": "Ahmad Danish", "status": "approved", "submitted_at": "2026-03-15" },
+    { "id": 3, "guardian_id": 1, "orphan_name": "Mira Binti Ali", "status": "rejected", "submitted_at": "2026-02-10" }
+  ]
+}
