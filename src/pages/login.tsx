@@ -1,6 +1,4 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { HeartHandshake } from "lucide-react"
+import { ModeToggle } from "@/components/mode-toggle"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -11,8 +9,10 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { ModeToggle } from "@/components/mode-toggle"
 import { useStore } from "@/store/useStore"
+import { HeartHandshake } from "lucide-react"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { toast } from "sonner"
 
 export function LoginPage() {
@@ -24,7 +24,8 @@ export function LoginPage() {
 
   if (user) {
     const role = user.role
-    if (role === "admin" || role === "staff") navigate("/dashboard", { replace: true })
+    if (role === "admin" || role === "staff")
+      navigate("/dashboard", { replace: true })
     else if (role === "guardian") navigate("/guardian/apply", { replace: true })
     else if (role === "donor") navigate("/donor/donate", { replace: true })
     return null
@@ -58,7 +59,7 @@ export function LoginPage() {
 
   return (
     <div className="flex min-h-svh flex-col items-center justify-center bg-muted/30 p-4">
-      <div className="absolute right-4 top-4">
+      <div className="absolute top-4 right-4">
         <ModeToggle />
       </div>
       <Card className="w-full max-w-sm">
@@ -95,18 +96,31 @@ export function LoginPage() {
               Login
             </Button>
           </form>
-          <div className="mt-4 space-y-1 text-center text-xs text-muted-foreground">
-            <p>Demo logins:</p>
-            <div className="flex flex-wrap justify-center gap-1">
-              {["admin", "staff", "guardian", "donor"].map((role) => (
+          <div className="mt-6 border border-dashed bg-muted/50 p-3">
+            <p className="mb-2 text-center text-xs font-medium text-muted-foreground">
+              ⚡ Quick Demo Login
+            </p>
+            <div className="grid grid-cols-2 gap-1.5">
+              {[
+                { role: "admin", email: "admin@peryatim.com" },
+                { role: "staff", email: "staff@peryatim.com" },
+                { role: "guardian", email: "guardian@peryatim.com" },
+                { role: "donor", email: "donor@peryatim.com" },
+              ].map(({ role, email }) => (
                 <Button
                   key={role}
-                  variant="link"
+                  variant="outline"
                   size="xs"
                   type="button"
                   onClick={() => fillDemo(role)}
+                  className="h-auto flex-col gap-0.5 py-1.5 leading-tight"
                 >
-                  {role}
+                  <span className="text-xs font-semibold capitalize">
+                    {role}
+                  </span>
+                  <span className="text-[10px] font-normal text-muted-foreground">
+                    {email}
+                  </span>
                 </Button>
               ))}
             </div>
