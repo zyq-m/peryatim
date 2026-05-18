@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils"
 import {
   Table,
   TableBody,
@@ -18,7 +19,7 @@ export function FinancesPage() {
   const balance = totalIncome - totalExpenses
 
   return (
-    <div className="space-y-6">
+    <div className="flex flex-col gap-6">
       <div>
         <h1 className="text-2xl font-semibold">Finances</h1>
         <p className="text-sm text-muted-foreground">
@@ -31,7 +32,7 @@ export function FinancesPage() {
             <CardTitle className="text-sm font-medium">Total Income</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold text-green-600">
+            <p className="text-2xl font-bold">
               RM{totalIncome.toLocaleString()}
             </p>
           </CardContent>
@@ -43,7 +44,7 @@ export function FinancesPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold text-red-600">
+            <p className="text-2xl font-bold text-destructive">
               RM{totalExpenses.toLocaleString()}
             </p>
           </CardContent>
@@ -53,9 +54,7 @@ export function FinancesPage() {
             <CardTitle className="text-sm font-medium">Balance</CardTitle>
           </CardHeader>
           <CardContent>
-            <p
-              className={`text-2xl font-bold ${balance >= 0 ? "text-emerald-600" : "text-red-600"}`}
-            >
+            <p className={cn("text-2xl font-bold", balance >= 0 ? "text-primary" : "text-destructive")}>
               RM{balance.toLocaleString()}
             </p>
           </CardContent>

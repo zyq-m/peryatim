@@ -8,10 +8,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Label as RadioLabel } from "@/components/ui/label"
 import { toast } from "sonner"
 
 const presets = [10, 50, 100]
@@ -34,7 +34,7 @@ export function DonorDonatePage() {
   }
 
   return (
-    <div className="mx-auto max-w-xl space-y-6">
+    <div className="mx-auto max-w-xl flex flex-col gap-6">
       <div>
         <h1 className="text-2xl font-semibold">Donate Now</h1>
         <p className="text-sm text-muted-foreground">
@@ -50,8 +50,8 @@ export function DonorDonatePage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleDonate} className="space-y-6">
-            <div className="space-y-3">
+          <form onSubmit={handleDonate} className="flex flex-col gap-6">
+            <div className="flex flex-col gap-3">
               <Label>Amount</Label>
               <div className="flex gap-2">
                 {presets.map((p) => (
@@ -80,7 +80,7 @@ export function DonorDonatePage() {
                 />
               </div>
             </div>
-            <div className="space-y-3">
+            <div className="flex flex-col gap-3">
               <Label>Payment Method</Label>
               <RadioGroup
                 value={method}
@@ -89,21 +89,19 @@ export function DonorDonatePage() {
               >
                 <div className="flex items-center gap-2">
                   <RadioGroupItem value="card" id="card" />
-                  <RadioLabel htmlFor="card">Card</RadioLabel>
+                  <Label htmlFor="card">Card</Label>
                 </div>
                 <div className="flex items-center gap-2">
                   <RadioGroupItem value="bank" id="bank" />
-                  <RadioLabel htmlFor="bank">Bank Transfer</RadioLabel>
+                  <Label htmlFor="bank">Bank Transfer</Label>
                 </div>
               </RadioGroup>
             </div>
             <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
+              <Checkbox
                 id="recurring"
                 checked={recurring}
-                onChange={(e) => setRecurring(e.target.checked)}
-                className="size-4 rounded border-border accent-primary"
+                onCheckedChange={(c) => setRecurring(c === true)}
               />
               <Label htmlFor="recurring" className="text-sm">
                 Make this a monthly recurring donation

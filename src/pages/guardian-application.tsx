@@ -35,7 +35,7 @@ export function GuardianApplicationPage() {
   }
 
   return (
-    <div className="mx-auto max-w-2xl space-y-6">
+    <div className="mx-auto max-w-2xl flex flex-col gap-6">
       <div>
         <h1 className="text-2xl font-semibold">Admissions</h1>
         <p className="text-sm text-muted-foreground">New Application</p>
@@ -48,8 +48,8 @@ export function GuardianApplicationPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
               <Label htmlFor="name">Orphan Name</Label>
               <Input
                 id="name"
@@ -60,7 +60,7 @@ export function GuardianApplicationPage() {
               />
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="space-y-2">
+              <div className="flex flex-col gap-2">
                 <Label htmlFor="dob">Date of Birth</Label>
                 <Input
                   id="dob"
@@ -70,7 +70,7 @@ export function GuardianApplicationPage() {
                   required
                 />
               </div>
-              <div className="space-y-2">
+              <div className="flex flex-col gap-2">
                 <Label htmlFor="gender">Gender</Label>
                 <Select value={gender} onValueChange={(v) => v && setGender(v)} required>
                   <SelectTrigger>
@@ -83,7 +83,7 @@ export function GuardianApplicationPage() {
                 </Select>
               </div>
             </div>
-            <div className="space-y-2">
+            <div className="flex flex-col gap-2">
               <Label htmlFor="background">Background</Label>
               <Textarea
                 id="background"
@@ -94,7 +94,7 @@ export function GuardianApplicationPage() {
                 required
               />
             </div>
-            <div className="space-y-2">
+            <div className="flex flex-col gap-2">
               <Label htmlFor="contact">Contact</Label>
               <Input
                 id="contact"

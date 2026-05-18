@@ -17,7 +17,7 @@ export function ReportsPage() {
   const femaleOrphans = orphans.filter((o) => o.gender === "Female").length
 
   return (
-    <div className="space-y-6">
+    <div className="flex flex-col gap-6">
       <div>
         <h1 className="text-2xl font-semibold">Reports</h1>
         <p className="text-sm text-muted-foreground">
@@ -29,7 +29,7 @@ export function ReportsPage() {
           <CardHeader>
             <CardTitle>Orphan Statistics</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2 text-sm">
+          <CardContent className="flex flex-col gap-2 text-sm">
             <div className="flex justify-between">
               <span className="text-muted-foreground">Total Orphans</span>
               <span className="font-medium">{orphans.length}</span>
@@ -48,7 +48,7 @@ export function ReportsPage() {
           <CardHeader>
             <CardTitle>Financial Summary</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2 text-sm">
+          <CardContent className="flex flex-col gap-2 text-sm">
             <div className="flex justify-between">
               <span className="text-muted-foreground">Total Donations</span>
               <span className="font-medium">
@@ -73,7 +73,7 @@ export function ReportsPage() {
           <CardHeader>
             <CardTitle>Application Status</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2 text-sm">
+          <CardContent className="flex flex-col gap-2 text-sm">
             <div className="flex justify-between">
               <span className="text-muted-foreground">Pending</span>
               <span className="font-medium">{pendingApps}</span>
@@ -92,7 +92,7 @@ export function ReportsPage() {
           <CardHeader>
             <CardTitle>Expense by Category</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2 text-sm">
+          <CardContent className="flex flex-col gap-2 text-sm">
             {Array.from(new Set(expenses.map((e) => e.category))).map(
               (category) => {
                 const total = expenses

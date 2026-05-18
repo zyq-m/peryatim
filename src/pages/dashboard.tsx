@@ -1,5 +1,6 @@
 import { Users, HeartHandshake, Wallet, UserPlus } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { useStore } from "@/store/useStore"
 
 export function DashboardPage() {
@@ -14,14 +15,14 @@ export function DashboardPage() {
   const pendingApps = applications.filter((a) => a.status === "pending").length
 
   const stats = [
-    { title: "Total Orphans", value: orphans.length, icon: Users, color: "text-blue-600" },
-    { title: "Total Donations", value: `RM${totalDonations.toLocaleString()}`, icon: HeartHandshake, color: "text-green-600" },
-    { title: "Balance", value: `RM${balance.toLocaleString()}`, icon: Wallet, color: balance >= 0 ? "text-emerald-600" : "text-red-600" },
-    { title: "Pending Apps", value: pendingApps, icon: UserPlus, color: "text-orange-600" },
+    { title: "Total Orphans", value: orphans.length, icon: Users },
+    { title: "Total Donations", value: `RM${totalDonations.toLocaleString()}`, icon: HeartHandshake },
+    { title: "Balance", value: `RM${balance.toLocaleString()}`, icon: Wallet },
+    { title: "Pending Apps", value: pendingApps, icon: UserPlus },
   ]
 
   return (
-    <div className="space-y-6">
+    <div className="flex flex-col gap-6">
       <div>
         <h1 className="text-2xl font-semibold">Dashboard</h1>
         <p className="text-sm text-muted-foreground">
@@ -35,10 +36,10 @@ export function DashboardPage() {
               <CardTitle className="text-sm font-medium">
                 {stat.title}
               </CardTitle>
-              <stat.icon className={`size-5 ${stat.color}`} />
+              <stat.icon className="size-5 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <p className="text-2xl font-bold">{stat.value}</p>
+              <span className="text-2xl font-bold">{stat.value}</span>
             </CardContent>
           </Card>
         ))}
@@ -51,19 +52,26 @@ export function DashboardPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-2">
-              {donations.slice(-3).reverse().map((d) => (
-                <div
-                  key={d.id}
-                  className="flex items-center justify-between text-sm"
-                >
-                  <span className="text-muted-foreground">
-                    {new Date(d.date).toLocaleDateString()}
-                  </span>
-                  <span className="font-medium">RM{d.amount}</span>
-                </div>
-              ))}
-            </div>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Date</TableHead>
+                  <TableHead className="text-right">Amount</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {donations.slice(-3).reverse().map((d) => (
+                  <TableRow key={d.id}>
+                    <TableCell className="text-muted-foreground">
+                      {new Date(d.date).toLocaleDateString()}
+                    </TableCell>
+                    <TableCell className="text-right font-medium">
+                      RM{d.amount}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           </CardContent>
         </Card>
         <Card>
@@ -73,22 +81,28 @@ export function DashboardPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-2">
-              {expenses.slice(-3).reverse().map((e) => (
-                <div
-                  key={e.id}
-                  className="flex items-center justify-between text-sm"
-                >
-                  <span>
-                    <span className="text-muted-foreground">
-                      {e.category} &middot;{" "}
-                    </span>
-                    {new Date(e.date).toLocaleDateString()}
-                  </span>
-                  <span className="font-medium">RM{e.amount}</span>
-                </div>
-              ))}
-            </div>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Category</TableHead>
+                  <TableHead>Date</TableHead>
+                  <TableHead className="text-right">Amount</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {expenses.slice(-3).reverse().map((e) => (
+                  <TableRow key={e.id}>
+                    <TableCell>{e.category}</TableCell>
+                    <TableCell className="text-muted-foreground">
+                      {new Date(e.date).toLocaleDateString()}
+                    </TableCell>
+                    <TableCell className="text-right font-medium">
+                      RM{e.amount}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           </CardContent>
         </Card>
       </div>

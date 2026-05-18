@@ -17,7 +17,7 @@ export function GuardianTrackPage() {
   const myApps = applications.filter((a) => a.guardian_id === user?.id)
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6">
+    <div className="mx-auto max-w-3xl flex flex-col gap-6">
       <div>
         <h1 className="text-2xl font-semibold">My Applications</h1>
         <p className="text-sm text-muted-foreground">
